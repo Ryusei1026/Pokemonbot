@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/Ryusei1026/Pokemonbot/get"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
@@ -33,7 +34,7 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					p, err := Select(message.Text)
+					p, err := get.Select(message.Text)
 					if err != nil {
 						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%v", err))).Do(); err != nil {
 							log.Print(err)

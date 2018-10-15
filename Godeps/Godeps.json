@@ -12,6 +12,10 @@
 			"Rev": "ea1bc64a63088ac2bbf1a2edcae38413794a7710"
 		},
 		{
+			"ImportPath": "github.com/Ryusei1026/Pokemonbot/Select",
+			"Rev": "5bac766b115c5f2f4499f99f1db9fcb1f5354c86"
+		},
+		{
 			"ImportPath": "github.com/andybalholm/cascadia",
 			"Comment": "v1.0.0",
 			"Rev": "901648c87902174f774fac311d7f176f8647bdaa"
