@@ -1,1 +1,1 @@
-web: pokemonbotbyrt
+web: go run main.go
