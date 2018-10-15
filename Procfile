@@ -1,1 +1,1 @@
-web: pokemonbotbyrt
+web: pokemonbotstatus
