@@ -1,4 +1,4 @@
-package Scraping
+package Select
 
 import (
 	"database/sql"
