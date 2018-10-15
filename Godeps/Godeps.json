@@ -7,18 +7,8 @@
 	],
 	"Deps": [
 		{
-			"ImportPath": "github.com/PuerkitoBio/goquery",
-			"Comment": "v1.4.0-2-gea1bc64",
-			"Rev": "ea1bc64a63088ac2bbf1a2edcae38413794a7710"
-		},
-		{
-			"ImportPath": "github.com/Ryusei1026/Pokemonbot/Select",
-			"Rev": "5bac766b115c5f2f4499f99f1db9fcb1f5354c86"
-		},
-		{
-			"ImportPath": "github.com/andybalholm/cascadia",
-			"Comment": "v1.0.0",
-			"Rev": "901648c87902174f774fac311d7f176f8647bdaa"
+			"ImportPath": "github.com/Ryusei1026/Pokemonbot/get",
+			"Rev": "b1452cd511d56ad98370e4a580b0880de0b3df5b"
 		},
 		{
 			"ImportPath": "github.com/go-sql-driver/mysql",
@@ -29,39 +19,6 @@
 			"ImportPath": "github.com/line/line-bot-sdk-go/linebot",
 			"Comment": "v4.0.0-6-g86c2e29",
 			"Rev": "86c2e29d979408330aca9614afa173a29784228b"
-		},
-		{
-			"ImportPath": "golang.org/x/net/html",
-			"Rev": "f73e4c9ed3b7ebdd5f699a16a880c2b1994e50dd"
-		},
-		{
-			"ImportPath": "golang.org/x/net/html/atom",
-			"Rev": "f73e4c9ed3b7ebdd5f699a16a880c2b1994e50dd"
-		},
-		{
-			"ImportPath": "golang.org/x/text/encoding",
-			"Comment": "v0.3.0-62-g905a571",
-			"Rev": "905a57155faa8230500121607930ebb9dd8e139c"
-		},
-		{
-			"ImportPath": "golang.org/x/text/encoding/internal",
-			"Comment": "v0.3.0-62-g905a571",
-			"Rev": "905a57155faa8230500121607930ebb9dd8e139c"
-		},
-		{
-			"ImportPath": "golang.org/x/text/encoding/internal/identifier",
-			"Comment": "v0.3.0-62-g905a571",
-			"Rev": "905a57155faa8230500121607930ebb9dd8e139c"
-		},
-		{
-			"ImportPath": "golang.org/x/text/encoding/japanese",
-			"Comment": "v0.3.0-62-g905a571",
-			"Rev": "905a57155faa8230500121607930ebb9dd8e139c"
-		},
-		{
-			"ImportPath": "golang.org/x/text/transform",
-			"Comment": "v0.3.0-62-g905a571",
-			"Rev": "905a57155faa8230500121607930ebb9dd8e139c"
 		}
 	]
 }
