@@ -2,6 +2,8 @@ package Scraping
 
 import (
 	"database/sql"
+	"errors"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -22,13 +24,13 @@ type Post struct {
 
 func Select(text string) (Post, error) {
 	var Pokemondata Post
-	db, err := sql.Open("mysql", "root:ryusei1026@/pokemon")
+	db, err := sql.Open("mysql", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		panic(err.Error())
 	}
 	//stmtOut, errs := db.Prepare(fmt.Sprintf("SELECT No, Name, H, A, B, C, D, S, Sum FROM value WHERE Name = %s",text))
 	if err = db.QueryRow("SELECT * FROM value WHERE Name = ?", text).Scan(&Pokemondata.No, &Pokemondata.Name, &Pokemondata.H, &Pokemondata.A, &Pokemondata.B, &Pokemondata.C, &Pokemondata.D, &Pokemondata.S, &Pokemondata.Sum); err != nil {
-		panic(err.Error())
+		return Pokemondata, errors.New("ポケモンが見つかりませんでした")
 	}
 	return Pokemondata, nil
 }
