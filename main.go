@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -33,14 +34,16 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					p, err := get.Select(message.Text)
-					if err == nil {
+					p, errs := get.Select(message.Text)
+					if errs == nil {
 						pokemon := p.No + p.Name + p.H + p.A + p.B + p.C + p.D + p.S + p.Sum
 						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(pokemon)).Do(); err != nil {
 							log.Print(err)
 						}
 					} else {
-						log.Print(err)
+						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%v", errs))).Do(); err != nil {
+							log.Print(err)
+						}
 					}
 				}
 			}
