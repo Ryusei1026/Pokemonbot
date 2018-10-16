@@ -2,6 +2,9 @@
 	"ImportPath": "github.com/heroku/pokemonbotbyrt",
 	"GoVersion": "go1.10",
 	"GodepVersion": "v80",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/Ryusei1026/Pokemonbot/get",
