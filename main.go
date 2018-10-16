@@ -9,6 +9,18 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
+type Post struct {
+	No   string
+	Name string
+	H    string
+	A    string
+	B    string
+	C    string
+	D    string
+	S    string
+	Sum  string
+}
+
 func main() {
 	bot, err := linebot.New(
 		"7e5bb6e7b67a07dc929db47a65c3d970",
@@ -34,18 +46,11 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					p, errs := get.Select(message.Text)
-					if errs == nil {
-						pokemon := (p.No + p.Name + p.H + p.A + p.B + p.C + p.D + p.S + p.Sum)
-						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(pokemon)).Do(); err != nil {
-							log.Print(err)
-						}
-					} else {
-						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%v", errs))).Do(); err != nil {
-							log.Println("222")
-							log.Print(err)
-							log.Println("aaa")
-						}
+					p, _ := get.Select(message.Text)
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintln(p))).Do(); err != nil {
+						log.Print("3333")
+						log.Print(err)
+						log.Print("44444")
 					}
 				}
 			}
