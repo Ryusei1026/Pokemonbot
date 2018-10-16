@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/Ryusei1026/Pokemonbot/get"
 	"github.com/line/line-bot-sdk-go/linebot"
@@ -23,8 +24,8 @@ type Post struct {
 
 func main() {
 	bot, err := linebot.New(
-		"7e5bb6e7b67a07dc929db47a65c3d970",
-		"nY0wki+j6Kz9KnTb/MWlbE1rhpVvmn/Ywtd1xem2LYjb8MV4x/fDJBk4Rj5OXrBdT5X2XTi+pWpgmVqt5a25P4yZvYGx1V+PAdkjOYgNIWG21/oqvhBtA4YY0V6QnOKXDLsuSFGJUN9KbM0Rrnqn6QdB04t89/1O/w1cDnyilFU=",
+		os.Getenv("CHANNEL_SECRET"),
+		os.Getenv("CHANNEL_TOKEN"),
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -48,7 +49,7 @@ func main() {
 					var p *get.Post
 					p, _ = get.Select(message.Text)
 					pokemon := p.No + p.Name
-					pokemondata := p.H + p.A + p.B + p.C + p.D + p.S + p.Sum
+					pokemondata := p.H + "-" + p.A + "-" + p.B + "-" + p.C + "-" + p.D + "-" + p.S + "-" + p.Sum
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%s\n%s", pokemon, pokemondata))).Do(); err != nil {
 						log.Print(p)
 						log.Print(err)

@@ -3,6 +3,7 @@ package get
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -23,7 +24,7 @@ type Post struct {
 
 func Select(text string) (Post, error) {
 	var Pokemondata Post
-	db, err := sql.Open("mysql", "b6bc8b034c31ce:2d465b7d@tcp(us-cdbr-iron-east-01.cleardb.net:3306)/heroku_160db8885759c02?parseTime=true")
+	db, err := sql.Open("mysql", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		panic(err.Error())
 	}

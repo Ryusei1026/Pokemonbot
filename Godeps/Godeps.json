@@ -5,7 +5,7 @@
 	"Deps": [
 		{
 			"ImportPath": "github.com/Ryusei1026/Pokemonbot/get",
-			"Rev": "327f888c3642e16ea5f612abb57780a2386cb782"
+			"Rev": "6ca3b510aca9eadd19cd0f9fbb1a51ea3ddd0da9"
 		},
 		{
 			"ImportPath": "github.com/go-sql-driver/mysql",
