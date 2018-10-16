@@ -45,9 +45,11 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					var p get.Post
+					var p *get.Post
 					p, _ = get.Select(message.Text)
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintln(p))).Do(); err != nil {
+					pokemon := p.No + p.Name
+					pokemondata := p.H + p.A + p.B + p.C + p.D + p.S + p.Sum
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%s\n%s", pokemon, pokemondata))).Do(); err != nil {
 						log.Print(p)
 						log.Print(err)
 					}
