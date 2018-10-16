@@ -2,7 +2,6 @@ package get
 
 import (
 	"database/sql"
-	"errors"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -28,8 +27,8 @@ func Select(text string) (*Post, error) {
 		panic(err.Error())
 	}
 	//stmtOut, errs := db.Prepare(fmt.Sprintf("SELECT No, Name, H, A, B, C, D, S, Sum FROM value WHERE Name = %s",text))
-	if err = db.QueryRow("SELECT * FROM pokemon WHERE Name = ?;", text).Scan(&Pokemondata.No, &Pokemondata.Name, &Pokemondata.H, &Pokemondata.A, &Pokemondata.B, &Pokemondata.C, &Pokemondata.D, &Pokemondata.S, &Pokemondata.Sum); err != nil {
-		return nil, errors.New("ポケモンが見つかりません")
+	if err := db.QueryRow("SELECT * FROM pokemon WHERE Name = ?;", text).Scan(&Pokemondata.No, &Pokemondata.Name, &Pokemondata.H, &Pokemondata.A, &Pokemondata.B, &Pokemondata.C, &Pokemondata.D, &Pokemondata.S, &Pokemondata.Sum); err != nil {
+		return nil, err
 	}
 	return &Pokemondata, nil
 }
