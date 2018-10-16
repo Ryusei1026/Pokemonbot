@@ -46,7 +46,7 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					var p *get.Post
+					var p get.Post
 					p, _ = get.Select(message.Text)
 					pokemon := p.No + p.Name
 					pokemondata := p.H + "-" + p.A + "-" + p.B + "-" + p.C + "-" + p.D + "-" + p.S + "-" + p.Sum
@@ -59,7 +59,7 @@ func main() {
 		}
 	}) // This is just sample code.
 	// For actual use, you must support HTTPS by using `ListenAndServeTLS`, a reverse proxy or something else.
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
 		log.Fatal(err)
 	}
 }
