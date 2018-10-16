@@ -2,6 +2,7 @@ package get
 
 import (
 	"database/sql"
+	"log"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -30,5 +31,6 @@ func Select(text string) (*Post, error) {
 	if err := db.QueryRow("SELECT * FROM pokemon WHERE Name = ?;", text).Scan(&Pokemondata.No, &Pokemondata.Name, &Pokemondata.H, &Pokemondata.A, &Pokemondata.B, &Pokemondata.C, &Pokemondata.D, &Pokemondata.S, &Pokemondata.Sum); err != nil {
 		return nil, err
 	}
+	log.Println("success")
 	return &Pokemondata, nil
 }

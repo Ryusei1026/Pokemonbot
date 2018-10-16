@@ -45,17 +45,16 @@ func main() {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					p, _ := get.Select(message.Text)
-					if _, err := bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%v", p))).Do(); err != nil {
-						log.Print("3333")
+					var p get.Post
+					p, _ = get.Select(message.Text)
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintln(p))).Do(); err != nil {
+						log.Print(p)
 						log.Print(err)
-						log.Print("44444")
 					}
 				}
 			}
 		}
-	})
-	// This is just sample code.
+	}) // This is just sample code.
 	// For actual use, you must support HTTPS by using `ListenAndServeTLS`, a reverse proxy or something else.
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
