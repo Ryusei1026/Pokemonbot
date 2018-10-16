@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
+	"unicode"
 
 	"github.com/Ryusei1026/Pokemonbot/get"
 	"github.com/line/line-bot-sdk-go/linebot"
@@ -20,6 +22,18 @@ type Post struct {
 	D    string
 	S    string
 	Sum  string
+}
+
+var kanaConv = unicode.SpecialCase{
+	unicode.CaseRange{
+		Lo: 0x3041, // ぁ
+		Hi: 0x3093, // ん
+		Delta: [unicode.MaxCase]rune{
+			0x30a1 - 0x3041, // strings.ToUpperCase でカタカナに変換されるマッピング
+			0,               // strings.ToLowerCase に対応 (今回は使わないことにして 0 を書いておく)
+			0,               // strings.ToTitleCase に対応 (今回は使わないことにして 0 を書いておく)
+		},
+	},
 }
 
 func main() {
@@ -47,7 +61,7 @@ func main() {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
 					var p get.Post
-					p, _ = get.Select(message.Text)
+					p, _ = get.Select(strings.ToUpperSpecial(kanaConv, message.Text))
 					pokemon := p.No + p.Name
 					pokemondata := p.H + "-" + p.A + "-" + p.B + "-" + p.C + "-" + p.D + "-" + p.S + "-" + p.Sum
 					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%s\n%s", pokemon, pokemondata))).Do(); err != nil {
