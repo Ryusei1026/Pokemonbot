@@ -2,13 +2,10 @@
 	"ImportPath": "github.com/heroku/pokemonbotbyrt",
 	"GoVersion": "go1.10",
 	"GodepVersion": "v80",
-	"Packages": [
-		"./..."
-	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/Ryusei1026/Pokemonbot/get",
-			"Rev": "6ca3b510aca9eadd19cd0f9fbb1a51ea3ddd0da9"
+			"Rev": "701750439b25e01bc4d082ee8402799d282447ae"
 		},
 		{
 			"ImportPath": "github.com/go-sql-driver/mysql",
