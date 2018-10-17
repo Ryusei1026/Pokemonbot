@@ -61,12 +61,17 @@ func main() {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
 					var p get.Post
-					p, _ = get.Select(strings.ToUpperSpecial(kanaConv, message.Text))
-					pokemon := p.No + p.Name
-					pokemondata := p.H + "-" + p.A + "-" + p.B + "-" + p.C + "-" + p.D + "-" + p.S + "-" + p.Sum
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%s\n%s", pokemon, pokemondata))).Do(); err != nil {
-						log.Print(p)
-						log.Print(err)
+					p, errs := get.Select(strings.ToUpperSpecial(kanaConv, message.Text))
+					if errs != nil {
+						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%v", errs))).Do(); err != nil {
+							log.Print(err)
+						}
+					} else {
+						pokemon := p.No + p.Name
+						pokemondata := p.H + "-" + p.A + "-" + p.B + "-" + p.C + "-" + p.D + "-" + p.S + "-" + p.Sum
+						if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(fmt.Sprintf("%s\n%s", pokemon, pokemondata))).Do(); err != nil {
+							log.Print(err)
+						}
 					}
 				}
 			}
