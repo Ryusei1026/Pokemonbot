@@ -31,7 +31,7 @@ func Select(text string) (Post, error) {
 	}
 	//stmtOut, errs := db.Prepare(fmt.Sprintf("SELECT No, Name, H, A, B, C, D, S, Sum FROM value WHERE Name = %s",text))
 	if err := db.QueryRow("SELECT * FROM pokemon WHERE Name = ?;", text).Scan(&Pokemondata.No, &Pokemondata.Name, &Pokemondata.H, &Pokemondata.A, &Pokemondata.B, &Pokemondata.C, &Pokemondata.D, &Pokemondata.S, &Pokemondata.Sum); err != nil {
-		return Pokemondata, errors.New("ポケモンが見つかりませんでした")
+		return Pokemondata, errors.New("ポケモンが見つかりませんでした\nポケモン名を入力してください")
 	}
 	log.Println("success")
 	return Pokemondata, nil
